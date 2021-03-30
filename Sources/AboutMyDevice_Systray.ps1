@@ -55,7 +55,7 @@ $Support_Mail = $Get_Support_Infos_Content.Config.Support_Mail
 $contextmenu = New-Object System.Windows.Forms.ContextMenuStrip
 
 
-$Run_Tool = $contextmenu.Items.Add("Display infos about my device");
+$Run_Tool = $contextmenu.Items.Add("Display info about my device");
 $Run_Tool_Img =[System.Drawing.Bitmap]::FromFile("$Systray_Pictures\help.png")
 $Run_Tool.Image = $Run_Tool_Img
 
