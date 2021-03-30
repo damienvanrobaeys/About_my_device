@@ -1,10 +1,10 @@
 ﻿$ProgData = $env:PROGRAMDATA
 $Current_Folder = split-path $MyInvocation.MyCommand.Path
-$GRT_AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
+$AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
 $SystemRoot = $env:SystemRoot
 $Debug_Folder = "$SystemRoot\Debug"
 $Log_File = "$Debug_Folder\GRT_AboutMyDevice.log"
-$ServiceName = "GRTgaz About my device"
+$ServiceName = "About my device"
 
 Function Write_Log
 	{
@@ -33,8 +33,8 @@ If($OD_Process_Status2 -ne $null)
 		$OD_Process_Status2 | kill -Force					
 	}	
 
-$Script:Local_Path_NSSM = "$GRT_AboutMyDevice_Folder\nssm.exe"	
-$Local_Path_NSSM = "$GRT_AboutMyDevice_Folder\nssm.exe"
+$Script:Local_Path_NSSM = "$AboutMyDevice_Folder\nssm.exe"	
+$Local_Path_NSSM = "$AboutMyDevice_Folder\nssm.exe"
 Get-Service $ServiceName | stop-service
 & $Local_Path_NSSM remove $ServiceName confirm	
-If(test-path $GRT_AboutMyDevice_Folder){Remove-item $GRT_AboutMyDevice_Folder -Recurse -Force}
+If(test-path $AboutMyDevice_Folder){Remove-item $AboutMyDevice_Folder -Recurse -Force}
