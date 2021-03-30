@@ -1,9 +1,9 @@
 ﻿$ProgData = $env:PROGRAMDATA
 $Current_Folder = split-path $MyInvocation.MyCommand.Path
-$GRT_AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
+$AboutMyDevice_Folder = $env:programdata + "\SD_AboutMyDevice"
 $SystemRoot = $env:SystemRoot
 $Debug_Folder = "$SystemRoot\Debug"
-$Log_File = "$Debug_Folder\GRT_AboutMyDevice.log"
+$Log_File = "$Debug_Folder\SD_AboutMyDevice.log"
 $ServiceName = "About my device"
 $Service_Description = "A systray tool allowing user to display information about his device, and run some actions"
 
@@ -20,18 +20,18 @@ Function Write_Log
 	}
 									
 Add-content $Log_File ""	
-If(test-path $GRT_AboutMyDevice_Folder){Remove-item $GRT_AboutMyDevice_Folder -Recurse -Force}
+If(test-path $AboutMyDevice_Folder){Remove-item $AboutMyDevice_Folder -Recurse -Force}
 
 Try
 	{
-		New-item $GRT_AboutMyDevice_Folder -Force -Type directory
+		New-item $AboutMyDevice_Folder -Force -Type directory
 		If(!(test-path $Log_File)){new-item $Log_File -type file -force}		
-		Write_Log -Message_Type "SUCCESS" -Message "Creating folder: $GRT_AboutMyDevice_Folder"		
+		Write_Log -Message_Type "SUCCESS" -Message "Creating folder: $AboutMyDevice_Folder"		
 		$Create_Folder_Status = $True
 	}
 Catch
 	{
-		Write_Log -Message_Type "ERROR" -Message "n error occured while creating folder: $GRT_AboutMyDevice_Folder"	
+		Write_Log -Message_Type "ERROR" -Message "n error occured while creating folder: $AboutMyDevice_Folder"	
 		$Create_Folder_Status = $False		
 	}
 	
@@ -40,14 +40,14 @@ If($Create_Folder_Status -eq $True)
 	{
 		Try
 			{
-				copy-item "$Current_Folder\Sources\*" $GRT_AboutMyDevice_Folder -Recurse -Force	
-				$Script:Local_Path_NSSM = "$GRT_AboutMyDevice_Folder\nssm.exe"				
-				Write_Log -Message_Type "SUCCESS" -Message "Sources files have been copied in: $GRT_AboutMyDevice_Folder"		
+				copy-item "$Current_Folder\Sources\*" $AboutMyDevice_Folder -Recurse -Force	
+				$Script:Local_Path_NSSM = "$AboutMyDevice_Folder\nssm.exe"				
+				Write_Log -Message_Type "SUCCESS" -Message "Sources files have been copied in: $AboutMyDevice_Folder"		
 				$Files_Copy_Status = $True				
 			}
 		Catch
 			{
-				Write_Log -Message_Type "ERROR" -Message "An error occured while copying files in: $GRT_AboutMyDevice_Folder"		
+				Write_Log -Message_Type "ERROR" -Message "An error occured while copying files in: $AboutMyDevice_Folder"		
 				$Files_Copy_Status = $False								
 			}
 	}
@@ -56,7 +56,7 @@ Add-content $Log_File ""
 If($Files_Copy_Status -eq $True)
 	{
 		$PathPowerShell = (Get-Command Powershell).Source
-		$PS1_To_Run = "$GRT_AboutMyDevice_Folder\AboutMyDevice_Service.ps1"
+		$PS1_To_Run = "$AboutMyDevice_Folder\AboutMyDevice_Service.ps1"
 		$ServiceArguments = '-ExecutionPolicy Bypass -NoProfile -File "{0}"' -f $PS1_To_Run
 		Try
 			{
