@@ -1,6 +1,4 @@
 ﻿
-# Part used for the restart button
-
 $Global:Current_Folder = split-path $MyInvocation.MyCommand.Path
 
 [System.Reflection.Assembly]::LoadWithPartialName('System.Windows.Forms')    | out-null
@@ -29,7 +27,7 @@ $Global:Current_Folder = split-path $MyInvocation.MyCommand.Path
 	
 
 
-$GRT_AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
+$AboutMyDevice_Folder = $env:programdata + "\SD_AboutMyDevice"
 $Systray_Pictures = "$Current_Folder\menu_pictures"
 
 
@@ -121,13 +119,13 @@ If($Display_Sync -eq "True")
 			$Get_MECM_Client_Version = (Get-WMIObject -Namespace root\ccm -Class SMS_Client  -ea silentlycontinue).ClientVersion
 			If($Get_MECM_Client_Version -ne $null)
 				{
-					$Client_Actions = @("Request & Evaluate Machine Policy","Request & Evaluate User Policy")		
+					$Client_Actions = @("8EF4D77C","3A88A2F3")							
 					$Config_Manager_Object = New-Object -ComObject CPApplet.CPAppletMgr	
 					ForEach($Action in $Client_Actions)
 						{
-							$action_To_Run = $Config_Manager_Object.GetClientActions() | Where-Object {($_.Name -eq $Action)}						
+							$action_To_Run = $Config_Manager_Object.GetClientActions() | Where-Object {($_.ActionID -like "*$Action*")}										
 							$action_To_Run.PerformAction()	
-						}		
+						}							
 				}	
 		 })		
 	}		

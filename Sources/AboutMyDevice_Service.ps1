@@ -1,11 +1,10 @@
-﻿# sleep 30
-
+﻿
 $ProgData = $env:PROGRAMDATA
 $Current_Folder = split-path $MyInvocation.MyCommand.Path
-$GRT_AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
+$AboutMyDevice_Folder = $env:programdata + "\SD_AboutMyDevice"
 $SystemRoot = $env:SystemRoot
 $Debug_Folder = "$SystemRoot\Debug"
-$Log_File = "$GRT_AboutMyDevice_Folder\GRT_AboutMyDevice.log"
+$Log_File = "$AboutMyDevice_Folder\GRT_AboutMyDevice.log"
 $ServiceName = "GRTgaz About my device"
 
 Function Write_Log
@@ -28,7 +27,7 @@ while($true)
 	
 	Try
 		{
-			import-module "$GRT_AboutMyDevice_Folder\RunasUser"
+			import-module "$AboutMyDevice_Folder\RunasUser"
 			Write_Log -Message_Type "SUCCESS" -Message "Importation du module RunasUser avec succès"
 			$RunasUser_Module_imported = $True
 		}
@@ -41,7 +40,7 @@ while($true)
 	If($RunasUser_Module_imported -eq $True)
 		{
 			$scriptblock = {
-			powershell -ExecutionPolicy Bypass -NoProfile "C:\ProgramData\GRT_AboutMyDevice\AboutMyDevice_Systray.ps1"												
+			powershell -ExecutionPolicy Bypass -NoProfile "C:\ProgramData\SD_AboutMyDevice\AboutMyDevice_Systray.ps1"												
 			}			
 			Try
 				{	
@@ -55,11 +54,9 @@ while($true)
 				}					
 		}
 	
-	# powershell -ExecutionPolicy Bypass -NoProfile "$GRT_AboutMyDevice_Folder\AboutMyDevice_Systray.ps1"												
-	Write_Log -Message_Type "INFO" -Message "The process of checking the $GRT_AboutMyDevice_Folder program will be paused for 3 hours"		
+	Write_Log -Message_Type "INFO" -Message "The process of checking the $AboutMyDevice_Folder program will be paused for 3 hours"		
 	Add-content $Log_File ""	
 	write-host ""
-	# Start-Sleep -Seconds 180	
 	Start-Sleep -Seconds 10		
 }
 
