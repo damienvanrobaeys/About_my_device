@@ -9,7 +9,7 @@
 	<Display_Sync>True</Display_Sync> <!-- True or False -->	
 	<CompanyPortal_SoftwareCenter_Preference>CompanyPortal</CompanyPortal_SoftwareCenter_Preference> <!-- CompanyPortal or SoftwareCenter -->	
 	<Send_Logs_Method>Mail</Send_Logs_Method> <!-- Sharepoint or mail, if mail add support mail below --> 
-	<Support_Mail>damien.vanrobaeys@gmail.com</Support_Mail>
+	<Support_Mail></Support_Mail>
 </Config>
 
 
