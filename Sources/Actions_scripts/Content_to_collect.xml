@@ -1,0 +1,26 @@
+<Content_to_collect>
+	<Folders>
+	<Folder_Path>C:\ProgramData\Microsoft\IntuneManagementExtension</Folder_Path>
+	<Folder_Path>C:\Windows\debug</Folder_Path>	
+	<Folder_Path>C:\Windows\Logs</Folder_Path>	
+	<Folder_Path>C:\Windows\ccmsetup</Folder_Path>	
+	<Folder_Path>C:\Windows\Panther</Folder_Path>	
+	<Folder_Path>C:\Windows\Minidump</Folder_Path>	
+	</Folders>
+	<Event_Logs>
+		<Event_Log>
+			<Event_Name>System</Event_Name>
+			<Event_Path>System</Event_Path>			
+		</Event_Log>
+		<Event_Log>
+			<Event_Name>Application</Event_Name>
+			<Event_Path>Application</Event_Path>			
+		</Event_Log>
+	</Event_Logs>
+	<Reg_Keys>
+		<Reg_Key>
+			<Reg_Path></Reg_Path> <!-- For instance, HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run --> 
+			<Reg_Specific_Value></Reg_Specific_Value>			
+		</Reg_Key>			
+	</Reg_Keys>	
+</Content_to_collect>
