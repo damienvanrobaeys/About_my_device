@@ -4,8 +4,8 @@ $GRT_AboutMyDevice_Folder = $env:programdata + "\GRT_AboutMyDevice"
 $SystemRoot = $env:SystemRoot
 $Debug_Folder = "$SystemRoot\Debug"
 $Log_File = "$Debug_Folder\GRT_AboutMyDevice.log"
-$ServiceName = "GRTgaz About my device"
-$Service_Description = "Outil dans la barre des tâches permettant d'avoir des informations sur le poste"
+$ServiceName = "About my device"
+$Service_Description = "A systray tool allowing user to display information about his device, and run some actions"
 
 Function Write_Log
 	{
